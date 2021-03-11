@@ -1,9 +1,31 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>autores</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>Autores</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-list>
+    <ion-item *ngFor="let autor of autores">
+      <ion-label>{{autor.nome}}</ion-label>
+      
+      <ion-buttons>
+        <ion-button color="warning">
+          <ion-icon name='create' slot="icon-only"></ion-icon>
+        </ion-button>
+
+        <ion-button color="danger">
+          <ion-icon name='trash' slot="icon-only"></ion-icon>
+        </ion-button>
+
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name='add'></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 </ion-content>
