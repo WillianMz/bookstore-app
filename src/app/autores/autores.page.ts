@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 import { Autor } from './autor.model';
+import { AutorService } from './autor.service';
 import { Genero } from './genero.enum';
 
 @Component({
@@ -11,15 +13,39 @@ export class AutoresPage implements OnInit {
 
   autores: Autor[];
 
-  constructor() { 
-    this.autores = [
-      { nome: 'David Flanagen',   dataNascimento: new Date(1980,11,12), genero: Genero.MASCULINO },
-      { nome: 'Douglas Cockford', dataNascimento: new Date(1975,9,23), genero: Genero.MASCULINO },
-      { nome: 'Martin Flower',    dataNascimento: new Date(1956,12,5), genero: Genero.MASCULINO }
-    ];
+  constructor(
+    private autorService: AutorService,
+    private alertController: AlertController
+  ) {
+    this.autores = autorService.getAutores();
   }
 
   ngOnInit() {
+  }
+
+  listar(){
+    this.autores = this.autorService.getAutores();
+  }
+
+  confirmarExclusao(autor: Autor){
+    this.alertController.create({
+      header: 'Confirmação de exclusão',
+      message: `Deseja excluir o autor ${autor.nome}?`,
+      buttons:[
+        {
+          text: 'Sim',
+          handler: () => this.excluir(autor)
+        },
+        {
+          text: 'Não'
+        }
+      ]
+    }).then(alerta => alerta.present());
+  }
+
+  private excluir(autor: Autor){
+    this.autorService.excluir(autor.id);
+    this.listar();
   }
 
 }
