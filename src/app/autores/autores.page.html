@@ -11,23 +11,20 @@
   <ion-list>
     <ion-item *ngFor="let autor of autores">
       <ion-label>{{autor.nome}}</ion-label>
-      
       <ion-buttons>
-        <ion-button color="warning" [routerLink]="['edicao',autor.id]">
-          <ion-icon name='create' slot="icon-only"></ion-icon>
+        <ion-button color="primary" [routerLink]="['edicao', autor.id]">
+          <ion-icon name="create" slot="icon-only"></ion-icon> 
         </ion-button>
-
-        <ion-button color="danger" (click)="confirmarExclusao(autor)">
-          <ion-icon name='trash' slot="icon-only"></ion-icon>
+        <ion-button color="primary" (click)="confirmarExclusao(autor)">
+          <ion-icon name="trash"  slot="icon-only"></ion-icon>
         </ion-button>
-
       </ion-buttons>
     </ion-item>
   </ion-list>
-
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+ 
+  <ion-fab vertical="bottom" horizontal="end">
     <ion-fab-button [routerLink]="['cadastro']">
-      <ion-icon name='add'></ion-icon>
+      <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 

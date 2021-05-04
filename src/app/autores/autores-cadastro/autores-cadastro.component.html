@@ -1,76 +1,64 @@
 <ion-header>
-  <ion-toolbar color="primary">
-      <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title>Cadastro de autores</ion-title>
-  </ion-toolbar>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Cadastro de autores</ion-title>
+    </ion-toolbar>
 </ion-header>
 <ion-content>
+    <form [formGroup]="autoresForm">
+        <ion-item>
+            <ion-label position="floating">Nome: </ion-label>
+            <ion-input formControlName="nome"
+                       type="text">
+            </ion-input>
+            <ion-text color="danger" *ngIf="nome.errors">
+                <small *ngIf="nome.errors.required && (nome.dirty || nome.touched)">
+                    O campo nome é obrigatório
+                </small>
+                <small *ngIf="nome.errors.minlength && (nome.dirty || nome.touched)">
+                    O campo nome deve conter no mínimo {{nome.errors.minlength.requiredLength}} caracteres
+                </small>
+                <small *ngIf="nome.errors.maxlength && (nome.dirty || nome.touched)">
+                    O campo nome deve conter no máximo {{nome.errors.maxlength.requiredLength}} caracteres
+                </small>
+            </ion-text>    
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Data de nascimento: </ion-label>
+            <ion-datetime formControlName="dataNascimento"
+                          display-format="DD de MMMM de YYYY"
+                          min="1930-01-01"
+                          cancel-text="Cancelar"
+                          done-text="Selecionar"
+                          [monthNames]="meses"
+                          [monthShortNames]="mesesAbreviados"></ion-datetime>
+        </ion-item>
+        <ion-list>
+            <ion-radio-group name="genero"
+                             formControlName="genero">
+                <ion-list-header>
+                    <ion-label>Gênero</ion-label>
+                </ion-list-header>
+                <ion-item>
+                    <ion-label>Feminino</ion-label>
+                    <ion-radio slot="start"
+                               value="F"></ion-radio>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Masculino</ion-label>
+                    <ion-radio slot="start"
+                               value="M"></ion-radio>
+                </ion-item>
+            </ion-radio-group>
+        </ion-list>
 
-  <form [formGroup]="autoresForm">
-
-    <ion-item>
-      
-      <ion-label position="floating">Nome: </ion-label>
-      <ion-input formControlName="nome" type="text"></ion-input>
-
-      <ion-text color="danger" *ngIf="nome.errors">
-        <small *ngIf="nome.errors.required && (nome.dirty || nome.touched)">
-          O campo é obrigatório
-        </small>
-        
-        <small *ngIf="nome.errors.minlength && (nome.dirty || nome.touched)">
-          O campo nome deve ter no minimo {{nome.errors.minlength.requiredLength}} caracteres
-        </small>
-
-        <small *ngIf="nome.errors.maxlength && (nome.dirty || nome.touched)">
-          O campo nome deve ter no maxímo {{nome.errors.maxlength.requiredLength}} caracteres
-        </small>
-
-
-      </ion-text>
-
-
-    </ion-item>
-
-    <ion-item>
-        <ion-label position="floating">Data de nascimento: </ion-label>
-        <ion-datetime formControlName="dataNascimento"
-                      display-format="DD de MMMM de YYYY"
-                      min="1930-01-01"
-                      cancel-text="Cancelar"
-                      done-text="Selecionar"
-                      [monthNames]="meses"
-                      [monthShortNames]="mesesAbreviados"></ion-datetime>
-    </ion-item>
-
-    <ion-list>
-        <ion-radio-group name="genero" formControlName="genero">
-            <ion-list-header>
-                <ion-label>Gênero</ion-label>
-            </ion-list-header>
-            <ion-item>
-                <ion-label>Feminino</ion-label>
-                <ion-radio slot="start"
-                          value="F"></ion-radio>
-            </ion-item>
-            <ion-item>
-                <ion-label>Masculino</ion-label>
-                <ion-radio slot="start"
-                          value="M"></ion-radio>
-            </ion-item>
-        </ion-radio-group>
-    </ion-list>
-
-    <ion-fab vertical="bottom"
-            horizontal="end">
-        <ion-fab-button (click)="salvar()" [disabled]="!autoresForm.valid">
-            <ion-icon name="checkmark-outline"></ion-icon>
-        </ion-fab-button>
-    </ion-fab>
-
-  </form>
-
-      
+        <ion-fab vertical="bottom"
+                 horizontal="end">
+            <ion-fab-button (click)="salvar()" [disabled]="!autoresForm.valid">
+                <ion-icon name="checkmark-outline"></ion-icon>
+            </ion-fab-button>
+        </ion-fab>
+    </form>
 </ion-content>

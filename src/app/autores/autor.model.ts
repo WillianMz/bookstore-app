@@ -4,5 +4,5 @@ export class Autor {
     id?: number;
     nome: string;
     dataNascimento: Date;
-    genero: Genero;
+    genero: Genero; 
 }

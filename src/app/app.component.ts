@@ -5,11 +5,10 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  public appPages = [
+  public menus = [
     { title: 'Home', url: '/home', icon: 'home' },
     { title: 'Livros', url: '/livros', icon: 'book' },
-    { title: 'Autores', url: '/autores', icon: 'people-circle' }
+    { title: 'Autores', url: '/autores', icon: 'people-circle' },
   ];
-
   constructor() {}
 }

@@ -10,11 +10,11 @@ const routes: Routes = [
     component: AutoresPage
   },
   {
-    path:'cadastro',
+    path: 'cadastro',
     component: AutoresCadastroComponent
   },
   {
-    path:'edicao/:id',
+    path: 'edicao/:id',
     component: AutoresCadastroComponent
   }
 ];

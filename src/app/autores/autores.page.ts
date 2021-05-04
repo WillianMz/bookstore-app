@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController,  } from '@ionic/angular';
 import { Autor } from './autor.model';
 import { AutorService } from './autor.service';
-import { Genero } from './genero.enum';
+
 
 @Component({
   selector: 'app-autores',
@@ -10,42 +10,76 @@ import { Genero } from './genero.enum';
   styleUrls: ['./autores.page.scss'],
 })
 export class AutoresPage implements OnInit {
-
   autores: Autor[];
 
   constructor(
-    private autorService: AutorService,
-    private alertController: AlertController
-  ) {
-    this.autores = autorService.getAutores();
+    private alertController: AlertController,
+    private toastController: ToastController,
+    private autorService: AutorService
+  ) { }
+
+  ionViewWillEnter() {
+    console.log('ionViewWillEnter');
+    this.listar();
   }
 
-  ngOnInit() {
+  ionViewDidEnter() {
+    console.log('ionViewDidEnter');
   }
 
-  listar(){
-    this.autores = this.autorService.getAutores();
+  ionViewWillLeave() {
+    console.log('ionViewWillLeave');
   }
 
-  confirmarExclusao(autor: Autor){
+  ionViewDidLeave(){
+    console.log('ionViewDidLeave');
+  }
+
+  ngOnInit() {}
+
+  listar() {
+    this.autorService
+      .getAutores()
+      .subscribe(
+        (dados) => {
+          this.autores = dados;
+        }, 
+        (erro) => {
+          console.error(erro);
+        }
+      );
+  }
+
+  confirmarExclusao(autor: Autor) {
     this.alertController.create({
-      header: 'Confirmação de exclusão',
+      header: 'Confirmação de exclusão', 
       message: `Deseja excluir o autor ${autor.nome}?`,
-      buttons:[
+      buttons: [
         {
           text: 'Sim',
           handler: () => this.excluir(autor)
         },
         {
-          text: 'Não'
+          text: 'Não',
         }
       ]
     }).then(alerta => alerta.present());
   }
 
-  private excluir(autor: Autor){
-    this.autorService.excluir(autor.id);
-    this.listar();
+  private excluir(autor: Autor) {
+    this.autorService
+      .excluir(autor.id)
+      .subscribe(
+        () => this.listar(),
+        (erro) => {
+          console.error(erro);
+          this.toastController.create({
+            message: `Não foi possível excluir o autor ${autor.nome}`,
+            duration: 5000,
+            keyboardClose: true,
+            color: 'danger'
+          }).then(t => t.present());
+        }
+      );
   }
-
 }
