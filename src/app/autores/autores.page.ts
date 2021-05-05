@@ -43,7 +43,7 @@ export class AutoresPage implements OnInit {
       .subscribe(
         (dados) => {
           this.autores = dados;
-        }, 
+        },
         (erro) => {
           console.error(erro);
         }
@@ -52,7 +52,7 @@ export class AutoresPage implements OnInit {
 
   confirmarExclusao(autor: Autor) {
     this.alertController.create({
-      header: 'Confirmação de exclusão', 
+      header: 'Confirmação de exclusão',
       message: `Deseja excluir o autor ${autor.nome}?`,
       buttons: [
         {

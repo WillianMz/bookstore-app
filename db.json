@@ -12,5 +12,27 @@
       "genero": "M",
       "id": 2
     }
+  ],
+  "livros": [
+    {
+      "id": 2,
+      "titulo": "JavadfaScript: The Good Parts",
+      "isbn": 987654312,
+      "num_pag": 75,
+      "preco": 199.95,
+      "autor_id": 2,
+      "autor": "WILLIAN",
+      "url_img": "https://images-na.ssl-images-amazon.com/images/I/510JjoNTdOL._SX258_BO1,204,203,200_.jpg"
+    },
+    {
+      "id": 5342,
+      "titulo": "JavadfaScript: The Good Parts",
+      "isbn": 987654312,
+      "num_pag": 75,
+      "preco": 199.95,
+      "autor_id": 2,
+      "autor": "WILLIAN",
+      "url_img": "https://images-na.ssl-images-amazon.com/images/I/510JjoNTdOL._SX258_BO1,204,203,200_.jpg"
+    }
   ]
 }

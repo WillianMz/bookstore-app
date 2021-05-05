@@ -1,9 +1,59 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>livros</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Livros</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-list>
+
+    <ion-item-sliding *ngFor="let liv of livros">
+      <ion-item>
+
+        <ion-thumbnail slot="start">
+          <img src={{liv.url_img}} alt="capa_livro">
+        </ion-thumbnail>
+
+        <ion-label>
+          <h2>{{liv.titulo}}</h2>
+          <h3>Autor(es):</h3>
+          <p>{{liv.autor}}</p>
+          <h3>ISBN: {{liv.isbn}}</h3>
+          <h3>Pág.: {{liv.num_pag}}</h3>
+        </ion-label>
+
+        <ion-note slot="end" color="danger">
+          <h2>R${{liv.preco}}</h2>
+        </ion-note>
+
+      </ion-item>
+
+      <ion-item-options side="start">
+        <ion-item-option color="primary" [routerLink]="['editar', liv.id]">
+          <h1>
+            <ion-icon name="create-sharp"></ion-icon>
+          </h1>
+        </ion-item-option>
+      </ion-item-options>
+
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="alertExcluir(liv)">
+          <h1>
+            <ion-icon name="close-sharp"></ion-icon>
+          </h1>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end">
+    <ion-fab-button [routerLink]="['novo']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 </ion-content>
