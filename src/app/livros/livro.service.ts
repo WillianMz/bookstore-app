@@ -24,16 +24,25 @@ export class LivroService {
     return response;
   }
 
-  create(livro: Livro){
+  private create(livro: Livro){
     return this.http.post(this.url, livro);
   }
 
-  update(livro: Livro){
+  private update(livro: Livro){
     return this.http.put(`${this.url}/${livro.id}`, livro);
   }
 
   delete(id: number): Observable<Object>{
     return this.http.delete(`${this.url}/${id}`);
+  }
+
+  salvar(livro: Livro){
+    if(livro.id){
+      return this.update(livro);
+    }
+    else{
+      return this.create(livro);
+    }
   }
 
 }

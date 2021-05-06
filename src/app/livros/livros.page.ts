@@ -17,6 +17,10 @@ export class LivrosPage implements OnInit {
     private livroService: LivroService
   ) { }
 
+  ionViewWillEnter() {
+    this.listar()
+  }
+
   ngOnInit() {
     this.listar();
   }

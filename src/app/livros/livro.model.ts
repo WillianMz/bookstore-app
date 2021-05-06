@@ -1,4 +1,3 @@
-import { Autor } from './../autores/autor.model';
 
 export class Livro {
   id?: number;
@@ -6,7 +5,7 @@ export class Livro {
   isbn: number;
   num_pag: number;
   preco: number;
-  autor_id: number;
-  autor: Autor;
+  autorId: number;
+  autor: string;
   url_img: string;
 }
