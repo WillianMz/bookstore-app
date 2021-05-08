@@ -35,9 +35,9 @@
 
       <!-- validacao -->
       <ion-text color="danger" *ngIf="isbn.errors">
-        <small *ngIf="isbn.errors.required && (isbn.dirty || isbn.touched)"> O campo isbn é obrigatório</small>
+        <small *ngIf="isbn.errors.required && (isbn.dirty || isbn.touched)"> O campo ISBN é obrigatório</small>
         <small *ngIf="isbn.errors.minlength && (isbn.dirty || isbn.touched)">
-          O campo isbn deve conter no mínimo {{isbn.errors.minlength.requiredLength}} caracteres
+          O campo ISBN deve conter no mínimo {{isbn.errors.minlength.requiredLength}} caracteres
         </small>
       </ion-text>
 
@@ -49,10 +49,10 @@
 
       <!-- validacao -->
       <ion-text color="danger" *ngIf="titulo.errors">
-        <small *ngIf="num_pag.errors.required && (num_pag.dirty || num_pag.touched)"> O campo num_pag é
+        <small *ngIf="num_pag.errors.required && (num_pag.dirty || num_pag.touched)"> O campo Nº de Páginas é
           obrigatório</small>
         <small *ngIf="num_pag.errors.minlength && (num_pag.dirty || num_pag.touched)">
-          O campo num_pag deve conter no mínimo {{num_pag.errors.minlength.requiredLength}} caracteres
+          O campo Nº de Páginas deve conter no mínimo {{num_pag.errors.minlength.requiredLength}} caracteres
         </small>
       </ion-text>
 
@@ -66,7 +66,7 @@
 
       <!-- validacao -->
       <ion-text color="danger" *ngIf="autor.errors">
-        <small *ngIf="autor.errors.required && (autor.dirty || autor.touched)"> O campo autor é obrigatório</small>
+        <small *ngIf="autor.errors.required && (autor.dirty || autor.touched)"> Selecione o autor</small>
       </ion-text>
 
     </ion-item>
@@ -77,7 +77,7 @@
 
       <!-- validacao -->
       <ion-text color="danger" *ngIf="preco.errors">
-        <small *ngIf="preco.errors.required && (preco.dirty || preco.touched)"> O campo preco é obrigatório</small>
+        <small *ngIf="preco.errors.required && (preco.dirty || preco.touched)"> O campo preço é obrigatório</small>
       </ion-text>
 
     </ion-item>
@@ -88,14 +88,13 @@
 
       <!-- validacao -->
       <ion-text color="danger" *ngIf="url_img.errors">
-        <small *ngIf="url_img.errors.required && (url_img.dirty || url_img.touched)"> O campo url_img é
-          obrigatório</small>
+        <small *ngIf="url_img.errors.required && (url_img.dirty || url_img.touched)">Informe o URL da imagem de capa do livro</small>
       </ion-text>
 
     </ion-item>
 
     <ion-fab vertical="bottom" horizontal="end">
-      <ion-fab-button (click)="salvar()">
+      <ion-fab-button (click)="salvar()" [disabled]="!livroForm.valid">
         <ion-icon name="checkmark-outline"></ion-icon>
       </ion-fab-button>
     </ion-fab>
